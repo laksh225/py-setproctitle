@@ -1,29 +1,31 @@
 # Travis CI configuration for setproctitle
+#
+# Wheel building branch.
 
-language: python
+services:
+  - docker
 
 matrix:
   include:
-
-    - env: TOXENV=py36
-      python: 3.6
-
-    - env: TOXENV=py37
-      python: 3.7
-
-    - env: TOXENV=py38
-      python: 3.8
+    - env:
+        - SCRIPT=./tools/build_sdist.sh
+      language: python
+      python: "3.6"
 
     - env:
-        - TOXENV=py39
-        # package not built correctly: --prefix=/usr/
-        - LD_LIBRARY_PATH=/opt/python/3.9-dev/lib/
-      python: 3.9-dev
+        - SCRIPT=./tools/build_wheels_x86_64.sh
+      sudo: required
 
-install:
-  - pip install tox
-
+    - env:
+        - SCRIPT=./tools/build_wheels_i686.sh
+      sudo: required
 
 script:
-  - test "${LD_LIBRARY_PATH}" || export LD_LIBRARY_PATH=$(python-config --prefix)/lib
-  - tox
+  - $SCRIPT
+
+deploy:
+  - provider: script
+    script: bash tools/travis_upload.sh
+    skip_cleanup: true
+    on:
+      branch: packages

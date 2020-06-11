@@ -3,6 +3,12 @@ A Python module to customize the process title
 
 :author: Daniele Varrazzo
 
+.. note::
+    This branch is used to create distribution packages.
+
+    Rebase this branch on `master` after a tag. Packages will be built by
+    Travis CI and uploaded on https://upload.varrazzo.com/setproctitle/
+
 The ``setproctitle`` module allows a process to change its title (as displayed
 by system tools such as ``ps`` and ``top``).
 

@@ -1,0 +1,7 @@
+Host upload
+    User upload
+    HostName upload.varrazzo.com
+    IdentityFile data/id_rsa-setproctitle-upload
+    UserKnownHostsFile data/known_hosts
+    # Fail immediately instead of prompting and hanging forever
+    StrictHostKeyChecking yes
