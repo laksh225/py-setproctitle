@@ -24,7 +24,7 @@ jobs:
       run: |
         git submodule update --init --recursive
         pip install -U wheel
-        python setup.py bdist_wheel
+        pip wheel setproctitle
       shell: bash
     - name: upload wheel
       uses: actions/upload-artifact@v1
