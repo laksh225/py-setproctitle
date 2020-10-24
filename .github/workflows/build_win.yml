@@ -29,4 +29,5 @@ jobs:
     - name: upload wheel
       uses: actions/upload-artifact@v1
       with:
-        name: dist_${{ matrix.os }}_${{ matrix.architecture }}_${{ matrix.python-version }}          path: dist
+        name: dist_${{ matrix.os }}_${{ matrix.architecture }}_${{ matrix.python-version }}
+        path: dist
